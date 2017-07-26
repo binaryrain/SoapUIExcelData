@@ -1,0 +1,119 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace XML2SoapXML
+{
+    public static class Extension
+    {
+        public static bool HashTableKeyExist(this Hashtable table,object obj,string id)
+        {
+            foreach (var item in table.Keys)
+            {
+                if (obj.GetType().GetProperties().Count(t => t.Name == "PropertyType") > 0)
+                {
+                    PropertyInfo pInfo = (PropertyInfo)obj;
+                    if (item.GetType() == pInfo.PropertyType && (string)table[item] == id)
+                    {
+                        return true;
+                    }
+                }
+                else 
+                {
+                    if (item.GetType() == obj.GetType() && (string)table[item] == id)
+                    {
+                        return true;
+                    }
+                }
+              
+            }
+            return false;
+        }
+
+        public static bool HashTableKeyExist(this Hashtable table, object obj)
+        {
+            foreach (var item in table.Keys)
+            {
+                if (obj.GetType().GetProperties().Count(t => t.Name == "PropertyType") > 0)
+                {
+                    PropertyInfo pInfo = (PropertyInfo)obj;
+                    if (item.GetType() == pInfo.PropertyType )
+                    {
+                        return true;
+                    }
+                }
+                else
+                {
+                    if (item.GetType() == obj.GetType() )
+                    {
+                        return true;
+                    }
+                }
+
+            }
+            return false;
+        }
+
+        public static object HashTableGetKey(this Hashtable table, object obj,string id)
+        {
+            foreach (var item in table.Keys)
+            {
+                if (obj.GetType().GetProperties().Count(t => t.Name == "PropertyType") > 0)
+                {
+                    PropertyInfo pInfo = (PropertyInfo)obj;
+                    if (item.GetType() == pInfo.PropertyType && (string)table[item] == id)
+                    {
+                        return item;
+                    }
+                }
+                else
+                {
+                    if (item.GetType() == obj.GetType() && (string)table[item] == id)
+                    {
+                        return item;
+                    }
+                }
+            }
+            return null;
+        }
+
+        public static object HashTableGetKey(this Hashtable table, object obj)
+        {
+            foreach (var item in table.Keys)
+            {
+                if (obj.GetType().GetProperties().Count(t => t.Name == "PropertyType") > 0)
+                {
+                    PropertyInfo pInfo = (PropertyInfo)obj;
+                    if (item.GetType() == pInfo.PropertyType )
+                    {
+                        return item;
+                    }
+                }
+                else
+                {
+                    if (item.GetType() == obj.GetType() )
+                    {
+                        return item;
+                    }
+                }
+            }
+            return null;
+        }
+
+        public static bool HashTableExistKeyByName(this Hashtable table, string name, string id)
+        {
+            foreach (var item in table.Keys)
+            {
+                if (item.ToString() == name && (string)table[item] == id)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+}
